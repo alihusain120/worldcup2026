@@ -1,0 +1,27 @@
+{
+  "_instructions": "To update results, set the winner's name for each match. Match IDs correspond to bracket position. Restart the server after editing.",
+  "_round32_key": {
+    "1": "South Africa vs Canada",
+    "2": "Netherlands vs Morocco",
+    "3": "Germany vs Paraguay",
+    "4": "France vs Sweden",
+    "5": "Brazil vs Japan",
+    "6": "Ivory Coast vs Norway",
+    "7": "Mexico vs Ecuador",
+    "8": "England vs DR Congo",
+    "9": "Portugal vs Croatia",
+    "10": "Spain vs Austria",
+    "11": "United States vs Bosnia and Herzegovina",
+    "12": "Belgium vs Senegal",
+    "13": "Argentina vs Cape Verde",
+    "14": "Australia vs Egypt",
+    "15": "Switzerland vs Algeria",
+    "16": "Colombia vs Ghana"
+  },
+  "round32": {},
+  "round16": {},
+  "quarters": {},
+  "semis": {},
+  "final": {},
+  "champion": null
+}

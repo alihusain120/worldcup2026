@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Cup 2026 Bracket</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>⚽ World Cup 2026 Bracket</h1>
+    <nav>
+      <button id="nav-bracket" class="active">Make Picks</button>
+      <button id="nav-live">Live Bracket</button>
+      <button id="nav-players">View Players</button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <section id="bracket-view">
+      <div class="bracket-container"></div>
+      <div id="submit-area" class="hidden">
+        <input type="text" id="player-name" placeholder="Your name" maxlength="30">
+        <button id="submit-picks">Lock In Picks</button>
+      </div>
+    </section>
+
+    <section id="players-view" class="hidden">
+      <div id="players-list"></div>
+    </section>
+
+    <section id="live-view" class="hidden">
+      <div class="bracket-container"></div>
+    </section>
+
+    <section id="player-bracket-view" class="hidden">
+      <button id="back-to-players">&larr; Back to Players</button>
+      <h2 id="player-bracket-title"></h2>
+      <div class="bracket-container"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "matches": [
+    { "id": 1, "team1": "South Africa", "team2": "Canada", "fifaMatch": 73, "date": "Jun 28" },
+    { "id": 2, "team1": "Netherlands", "team2": "Morocco", "fifaMatch": 75, "date": "Jun 29" },
+    { "id": 3, "team1": "Germany", "team2": "Paraguay", "fifaMatch": 74, "date": "Jun 29" },
+    { "id": 4, "team1": "France", "team2": "Sweden", "fifaMatch": 77, "date": "Jun 30" },
+    { "id": 5, "team1": "Brazil", "team2": "Japan", "fifaMatch": 76, "date": "Jun 29" },
+    { "id": 6, "team1": "Ivory Coast", "team2": "Norway", "fifaMatch": 78, "date": "Jun 30" },
+    { "id": 7, "team1": "Mexico", "team2": "Ecuador", "fifaMatch": 79, "date": "Jun 30" },
+    { "id": 8, "team1": "England", "team2": "DR Congo", "fifaMatch": 80, "date": "Jul 1" },
+    { "id": 9, "team1": "Portugal", "team2": "Croatia", "fifaMatch": 83, "date": "Jul 2" },
+    { "id": 10, "team1": "Spain", "team2": "Austria", "fifaMatch": 84, "date": "Jul 2" },
+    { "id": 11, "team1": "United States", "team2": "Bosnia and Herzegovina", "fifaMatch": 81, "date": "Jul 1" },
+    { "id": 12, "team1": "Belgium", "team2": "Senegal", "fifaMatch": 82, "date": "Jul 1" },
+    { "id": 13, "team1": "Argentina", "team2": "Cape Verde", "fifaMatch": 86, "date": "Jul 3" },
+    { "id": 14, "team1": "Australia", "team2": "Egypt", "fifaMatch": 88, "date": "Jul 3" },
+    { "id": 15, "team1": "Switzerland", "team2": "Algeria", "fifaMatch": 85, "date": "Jul 2" },
+    { "id": 16, "team1": "Colombia", "team2": "Ghana", "fifaMatch": 87, "date": "Jul 3" }
+  ]
+}
