@@ -460,7 +460,10 @@ async function loadPlayers() {
         <div class="name">${escapeHtml(p.name)}</div>
         <div class="date">${date}</div>
       </div>
-      <span class="status ${status.class}">${status.label}</span>
+      <div class="player-stats">
+        ${status.score ? `<span class="score">${status.score}</span>` : ''}
+        <span class="status ${status.class}">${status.label}</span>
+      </div>
     `;
     card.addEventListener('click', () => showPlayerBracket(p));
     list.appendChild(card);
@@ -468,21 +471,37 @@ async function loadPlayers() {
 }
 
 function getPlayerStatus(playerPicks) {
-  const hasResults = Object.values(results).some(
-    r => r && typeof r === 'object' && Object.keys(r).length > 0
-  );
-  if (!hasResults) return { label: 'Pending', class: 'alive' };
+  let correct = 0;
+  let total = 0;
+  let busted = false;
 
   for (const round of ROUNDS) {
     const roundResults = results[round];
     if (!roundResults || typeof roundResults !== 'object') continue;
     for (const [matchId, winner] of Object.entries(roundResults)) {
-      if (playerPicks[round]?.[matchId] && playerPicks[round][matchId] !== winner) {
-        return { label: 'Busted', class: 'busted' };
+      if (playerPicks[round]?.[matchId]) {
+        total++;
+        if (playerPicks[round][matchId] === winner) {
+          correct++;
+        } else {
+          busted = true;
+        }
       }
     }
   }
-  return { label: 'Alive', class: 'alive' };
+
+  if (results.champion && playerPicks.champion) {
+    total++;
+    if (playerPicks.champion === results.champion) correct++;
+    else busted = true;
+  }
+
+  if (total === 0) return { label: 'Pending', class: 'alive', score: null };
+  return {
+    label: busted ? 'Busted' : 'Alive',
+    class: busted ? 'busted' : 'alive',
+    score: `${correct}/${total}`
+  };
 }
 
 function showPlayerBracket(player) {
