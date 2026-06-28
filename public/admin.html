@@ -49,60 +49,64 @@
       render();
     }
 
+    function addHeading(container, text) {
+      const h = document.createElement('h2');
+      h.textContent = text;
+      container.appendChild(h);
+    }
+
+    function getResult(round, id) {
+      return currentResults[round]?.[String(id)] || null;
+    }
+
     function render() {
       const container = document.getElementById('rounds');
       container.innerHTML = '';
 
-      // Round of 32
-      container.innerHTML += '<h2>Round of 32</h2>';
+      addHeading(container, 'Round of 32');
       teams.forEach(m => {
         container.appendChild(makeRow('round32', m.id, m.team1, m.team2));
       });
 
-      // Round of 16
-      container.innerHTML += '<h2>Round of 16</h2>';
+      addHeading(container, 'Round of 16');
       for (let i = 1; i <= 8; i++) {
-        const t1 = currentResults.round32?.[i * 2 - 1] || '?';
-        const t2 = currentResults.round32?.[i * 2] || '?';
+        const t1 = getResult('round32', i * 2 - 1) || '?';
+        const t2 = getResult('round32', i * 2) || '?';
         container.appendChild(makeRow('round16', i, t1, t2));
       }
 
-      // Quarters
-      container.innerHTML += '<h2>Quarterfinals</h2>';
+      addHeading(container, 'Quarterfinals');
       for (let i = 1; i <= 4; i++) {
-        const t1 = currentResults.round16?.[i * 2 - 1] || '?';
-        const t2 = currentResults.round16?.[i * 2] || '?';
+        const t1 = getResult('round16', i * 2 - 1) || '?';
+        const t2 = getResult('round16', i * 2) || '?';
         container.appendChild(makeRow('quarters', i, t1, t2));
       }
 
-      // Semis
-      container.innerHTML += '<h2>Semifinals</h2>';
+      addHeading(container, 'Semifinals');
       for (let i = 1; i <= 2; i++) {
-        const t1 = currentResults.quarters?.[i * 2 - 1] || '?';
-        const t2 = currentResults.quarters?.[i * 2] || '?';
+        const t1 = getResult('quarters', i * 2 - 1) || '?';
+        const t2 = getResult('quarters', i * 2) || '?';
         container.appendChild(makeRow('semis', i, t1, t2));
       }
 
-      // Final
-      container.innerHTML += '<h2>Final</h2>';
-      const f1 = currentResults.semis?.[1] || '?';
-      const f2 = currentResults.semis?.[2] || '?';
+      addHeading(container, 'Final');
+      const f1 = getResult('semis', 1) || '?';
+      const f2 = getResult('semis', 2) || '?';
       container.appendChild(makeRow('final', 1, f1, f2));
 
-      // Champion
-      container.innerHTML += '<h2>Champion</h2>';
+      addHeading(container, 'Champion');
       const champRow = document.createElement('div');
       champRow.className = 'match-row';
-      champRow.innerHTML = `<span class="label">Tournament Winner</span>`;
+      const champLabel = document.createElement('span');
+      champLabel.className = 'label';
+      champLabel.textContent = 'Tournament Winner';
+      champRow.appendChild(champLabel);
       const sel = document.createElement('select');
       sel.id = 'champion-select';
       sel.innerHTML = '<option value="">—</option>';
-      if (currentResults.final?.[1]) {
-        sel.innerHTML += `<option value="${currentResults.final[1]}">${currentResults.final[1]}</option>`;
-      }
-      const fLoser = [f1, f2].find(t => t !== currentResults.final?.[1]);
-      if (fLoser && fLoser !== '?' && currentResults.final?.[1]) {
-        // only show the final winner as champion option
+      const finalWinner = getResult('final', 1);
+      if (finalWinner) {
+        sel.innerHTML += `<option value="${finalWinner}">${finalWinner}</option>`;
       }
       if (currentResults.champion) sel.value = currentResults.champion;
       champRow.appendChild(sel);
@@ -125,15 +129,16 @@
       if (team1 && team1 !== '?') sel.innerHTML += `<option value="${team1}">${team1}</option>`;
       if (team2 && team2 !== '?') sel.innerHTML += `<option value="${team2}">${team2}</option>`;
 
-      const current = currentResults[round]?.[matchId];
+      const key = String(matchId);
+      const current = currentResults[round]?.[key];
       if (current) sel.value = current;
 
       sel.addEventListener('change', () => {
         if (!currentResults[round]) currentResults[round] = {};
         if (sel.value) {
-          currentResults[round][matchId] = sel.value;
+          currentResults[round][key] = sel.value;
         } else {
-          delete currentResults[round][matchId];
+          delete currentResults[round][key];
         }
         render();
       });
