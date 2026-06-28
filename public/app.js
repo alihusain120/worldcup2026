@@ -82,15 +82,15 @@ function buildBracketDOM(viewId, isMainBracket, prefix) {
   champMatches.innerHTML = '<div class="team-slot empty">?</div>';
   champCol.appendChild(champMatches);
 
+  const submitArea = view.querySelector('#submit-area');
+  if (submitArea) {
+    champCol.appendChild(submitArea);
+  }
+
   container.appendChild(champCol);
 
   if (!view.contains(container)) {
-    const submitArea = view.querySelector('#submit-area');
-    if (submitArea) {
-      view.insertBefore(container, submitArea);
-    } else {
-      view.appendChild(container);
-    }
+    view.appendChild(container);
   }
 }
 

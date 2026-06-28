@@ -198,10 +198,10 @@ main { padding: 1.5rem; overflow-x: auto; }
 /* Submit */
 #submit-area {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
-  gap: 0.75rem;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
   align-items: center;
 }
 
@@ -354,15 +354,9 @@ main { padding: 1.5rem; overflow-x: auto; }
   100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
 }
 
-/* Submit bar: sticky when visible */
+/* Submit bar in champion column */
 #submit-area:not(.hidden) {
-  position: sticky;
-  bottom: 0;
-  background: #0a0e17;
-  padding: 1rem;
-  border-top: 2px solid #8b1a1a;
-  margin: 0 -1.5rem;
-  z-index: 50;
+  padding: 0.5rem 0;
 }
 
 /* Mobile: keep classic bracket, just shrink it */
@@ -403,10 +397,8 @@ main { padding: 1.5rem; overflow-x: auto; }
     font-size: 0.7rem;
   }
 
-  #submit-area:not(.hidden) {
-    margin: 0 -0.5rem;
-    padding: 0.75rem;
-  }
+  #player-name { width: 100%; }
+  #submit-picks { width: 100%; }
 
   #players-list { max-width: 100%; }
 
